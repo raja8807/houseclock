@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import CustomInput from '../ui/CustomInput';
-import CustomSelectBox from '../ui/CustomSelectBox';
-import CustomButton from '../ui/CustomButton';
-import CustomHeader from '../ui/CustomHeader';
+import { Colors } from '../../../theme/colors';
+import { Spacing } from '../../../theme/spacing';
+import CustomInput from '../../shared/CustomInput';
+import CustomSelectBox from '../../shared/CustomSelectBox';
+import CustomButton from '../../shared/CustomButton';
+import CustomHeader from '../../shared/CustomHeader';
 
 const AddItemScreen = ({ navigation }) => {
     const [name, setName] = useState('');

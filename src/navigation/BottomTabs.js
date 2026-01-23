@@ -1,17 +1,21 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../theme/colors';
 import { Spacing } from '../theme/spacing';
 
-import DashboardScreen from '../screens/DashboardScreen';
-import SearchScreen from '../screens/SearchScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import AddItemScreen from '../screens/AddItemScreen'; // Using as the "Add" tab content
+import DashboardScreen from '../components/screens/Dashboard/DashboardScreen';
+import SearchScreen from '../components/screens/Search/SearchScreen';
+import SettingsScreen from '../components/screens/Settings/SettingsScreen';
+import AddItemScreen from '../components/screens/AddItem/AddItemScreen';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
+    const insets = useSafeAreaInsets();
+    const height = 60 + insets.bottom;
+
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -21,8 +25,8 @@ const BottomTabs = () => {
                 tabBarStyle: {
                     borderTopColor: Colors.border,
                     backgroundColor: Colors.white,
-                    height: 60,
-                    paddingBottom: Spacing.s,
+                    height: height,
+                    paddingBottom: insets.bottom + Spacing.s,
                     paddingTop: Spacing.s,
                 },
                 tabBarLabelStyle: {

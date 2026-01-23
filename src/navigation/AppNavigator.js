@@ -3,13 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 
-import SplashScreen from '../screens/SplashScreen';
-import LoginScreen from '../screens/LoginScreen';
-import HomeSetupScreen from '../screens/HomeSetupScreen';
+import SplashScreen from '../components/screens/Splash/SplashScreen';
+import LoginScreen from '../components/screens/Login/LoginScreen';
+import HomeSetupScreen from '../components/screens/HomeSetup/HomeSetupScreen';
 import BottomTabs from './BottomTabs';
-import ItemDetailScreen from '../screens/ItemDetailScreen';
-import AddMaintenanceScreen from '../screens/AddMaintenanceScreen';
-import AddItemScreen from '../screens/AddItemScreen'; // For FAB navigation
+import ItemDetailScreen from '../components/screens/ItemDetail/ItemDetailScreen';
+import AddMaintenanceScreen from '../components/screens/AddMaintenance/AddMaintenanceScreen';
+import AddItemScreen from '../components/screens/AddItem/AddItemScreen';
 
 const Stack = createNativeStackNavigator();
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import { Typography } from '../theme/typography';
-import CustomButton from '../ui/CustomButton';
+import { Colors } from '../../../theme/colors';
+import { Spacing } from '../../../theme/spacing';
+import { Typography } from '../../../theme/typography';
+import CustomButton from '../../shared/CustomButton';
 
 const SplashScreen = ({ navigation }) => {
     return (

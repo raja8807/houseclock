@@ -1,33 +1,28 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import { Typography } from '../theme/typography';
-import { dummyItems } from '../data/dummyItems';
-import CustomCard from '../ui/CustomCard';
-import { formatDate, getDaysRemaining, getStatusColorFromExpiry } from '../utils/dateUtils';
-import CustomHeader from '../ui/CustomHeader';
+import { Colors } from '../../../theme/colors';
+import { Spacing } from '../../../theme/spacing';
+import { Typography } from '../../../theme/typography';
+import { dummyItems } from '../../../data/dummyItems';
+import { dummyMaintenance } from '../../../data/dummyMaintenance';
+import { formatDate } from '../../../utils/dateUtils';
+import TimelineItem from './TimelineItem';
 
 const DashboardScreen = ({ navigation }) => {
     const today = new Date();
-    const greeting = 'Good Morning, Alex'; // Static greeting as requested in constraints (no auth logic)
+    const greeting = 'Good Morning, Alex';
+
+    const getMaintenanceForItem = (itemId) => {
+        return dummyMaintenance.find(m => m.itemId === itemId);
+    };
 
     const renderItem = ({ item }) => {
-        const daysLeft = getDaysRemaining(item.expiryDate);
-        const status = item.status; // Using pre-defined status from dummy data for consistency with constraints
-
-        // Map status string to Color
-        let statusColor = Colors.success;
-        if (status === 'urgent') statusColor = Colors.danger;
-        if (status === 'upcoming') statusColor = Colors.accent;
-
+        const maintenance = getMaintenanceForItem(item.id);
         return (
-            <CustomCard
-                title={item.name}
-                subtitle={`Expires: ${formatDate(item.expiryDate)}`}
-                rightText={`${daysLeft} days`}
-                statusColor={statusColor}
+            <TimelineItem
+                item={item}
+                maintenance={maintenance}
                 onPress={() => navigation.navigate('ItemDetail', { item })}
             />
         );
@@ -87,7 +82,7 @@ const styles = StyleSheet.create({
     },
     fab: {
         position: 'absolute',
-        bottom: Spacing.xxl + 20, // Adjust for tab bar if needed, but safe to float high
+        bottom: Spacing.xxl + 20,
         right: Spacing.screenPadding,
         width: 56,
         height: 56,
@@ -104,7 +99,7 @@ const styles = StyleSheet.create({
     fabIcon: {
         color: Colors.white,
         fontSize: 32,
-        marginTop: -4, // Optical adjustment
+        marginTop: -4,
     },
 });
 

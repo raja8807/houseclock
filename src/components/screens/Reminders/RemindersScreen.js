@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import { Typography } from '../theme/typography';
-import CustomToggle from '../ui/CustomToggle';
-import CustomHeader from '../ui/CustomHeader';
-import { dummyReminders } from '../data/dummyReminders';
+import { Colors } from '../../../theme/colors';
+import { Spacing } from '../../../theme/spacing';
+import { Typography } from '../../../theme/typography';
+import CustomToggle from '../../shared/CustomToggle';
+import CustomHeader from '../../shared/CustomHeader';
+import { dummyReminders } from '../../../data/dummyReminders';
+import ReminderItem from './ReminderItem';
 
 const RemindersScreen = () => {
     const [pushEnabled, setPushEnabled] = useState(true);
@@ -45,10 +45,9 @@ const RemindersScreen = () => {
                         data={reminders}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
-                            <CustomToggle
-                                label={item.title}
-                                value={item.enabled}
-                                onValueChange={() => toggleReminder(item.id)}
+                            <ReminderItem
+                                item={item}
+                                onToggle={() => toggleReminder(item.id)}
                             />
                         )}
                         scrollEnabled={false}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import CustomSelectBox from '../ui/CustomSelectBox';
-import CustomInput from '../ui/CustomInput';
-import CustomButton from '../ui/CustomButton';
-import CustomHeader from '../ui/CustomHeader';
+import { Colors } from '../../../theme/colors';
+import { Spacing } from '../../../theme/spacing';
+import CustomSelectBox from '../../shared/CustomSelectBox';
+import CustomInput from '../../shared/CustomInput';
+import CustomButton from '../../shared/CustomButton';
+import CustomHeader from '../../shared/CustomHeader';
 
 const AddMaintenanceScreen = ({ navigation }) => {
     const [task, setTask] = useState('');

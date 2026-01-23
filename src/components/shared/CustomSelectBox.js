@@ -8,9 +8,9 @@ import {
     StyleSheet,
     Pressable,
 } from 'react-native';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import { Typography } from '../theme/typography';
+import { Colors } from '../../theme/colors';
+import { Spacing } from '../../theme/spacing';
+import { Typography } from '../../theme/typography';
 
 const CustomSelectBox = ({ label, options, selectedValue, onSelect, placeholder = 'Select an option' }) => {
     const [visible, setVisible] = useState(false);

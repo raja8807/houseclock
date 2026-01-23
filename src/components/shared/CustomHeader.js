@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import { Typography } from '../theme/typography';
+import { Colors } from '../../theme/colors';
+import { Spacing } from '../../theme/spacing';
+import { Typography } from '../../theme/typography';
 
 const CustomHeader = ({ title, showBack = false, rightElement }) => {
     const navigation = useNavigation();

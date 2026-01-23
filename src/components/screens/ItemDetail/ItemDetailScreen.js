@@ -1,20 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import { Typography } from '../theme/typography';
-import CustomHeader from '../ui/CustomHeader';
-import CustomButton from '../ui/CustomButton';
-import { formatDate, getDaysRemaining } from '../utils/dateUtils';
-
-const DetailRow = ({ label, value, highlight }) => (
-    <View style={styles.row}>
-        <Text style={[Typography.body, styles.label]}>{label}</Text>
-        <Text style={[Typography.body, styles.value, highlight && styles.highlight]}>
-            {value || 'N/A'}
-        </Text>
-    </View>
-);
+import { Colors } from '../../../theme/colors';
+import { Spacing } from '../../../theme/spacing';
+import { Typography } from '../../../theme/typography';
+import CustomHeader from '../../shared/CustomHeader';
+import CustomButton from '../../shared/CustomButton';
+import { formatDate, getDaysRemaining } from '../../../utils/dateUtils';
+import DetailRow from './DetailRow';
+import WarrantyTimer from './WarrantyTimer';
 
 const ItemDetailScreen = ({ route, navigation }) => {
     const { item } = route.params;
@@ -34,11 +27,7 @@ const ItemDetailScreen = ({ route, navigation }) => {
                 <View style={styles.card}>
                     <Text style={[Typography.title, styles.title]}>{item.name}</Text>
                     <Text style={[Typography.body, styles.subtitle]}>{item.category}</Text>
-
-                    <View style={styles.timerContainer}>
-                        <Text style={styles.timerValue}>{daysLeft} Days</Text>
-                        <Text style={styles.timerLabel}>Until Warranty Expires</Text>
-                    </View>
+                    <WarrantyTimer daysLeft={daysLeft} />
                 </View>
 
                 {/* Details Section */}
@@ -52,6 +41,11 @@ const ItemDetailScreen = ({ route, navigation }) => {
 
                 {/* Actions */}
                 <View style={styles.actions}>
+                    <CustomButton
+                        title="Schedule Maintenance"
+                        type="primary"
+                        onPress={() => navigation.navigate('AddMaintenance', { item })}
+                    />
                     <CustomButton
                         title="Edit Item"
                         type="secondary"
@@ -94,43 +88,11 @@ const styles = StyleSheet.create({
         color: Colors.textSecondary,
         marginBottom: Spacing.l,
     },
-    timerContainer: {
-        backgroundColor: Colors.background,
-        padding: Spacing.m,
-        borderRadius: Spacing.borderRadius,
-        alignItems: 'center',
-        width: '100%',
-    },
-    timerValue: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: Colors.primary,
-    },
-    timerLabel: {
-        color: Colors.textSecondary,
-        fontSize: 12,
-    },
     section: {
         marginBottom: Spacing.xxl,
     },
     sectionTitle: {
         marginBottom: Spacing.m,
-    },
-    row: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: Spacing.s,
-        borderBottomWidth: 1,
-        borderBottomColor: Colors.border,
-    },
-    label: {
-        color: Colors.textSecondary,
-    },
-    value: {
-        fontWeight: '500',
-    },
-    highlight: {
-        color: Colors.primary,
     },
     actions: {
         gap: Spacing.m,

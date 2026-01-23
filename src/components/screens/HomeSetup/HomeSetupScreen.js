@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import { Typography } from '../theme/typography';
-import CustomSelectBox from '../ui/CustomSelectBox';
-import CustomButton from '../ui/CustomButton';
-import CustomHeader from '../ui/CustomHeader';
+import { Colors } from '../../../theme/colors';
+import { Spacing } from '../../../theme/spacing';
+import { Typography } from '../../../theme/typography';
+import CustomSelectBox from '../../shared/CustomSelectBox';
+import CustomButton from '../../shared/CustomButton';
+import CustomHeader from '../../shared/CustomHeader';
 
 const HomeSetupScreen = ({ navigation }) => {
     const [homeType, setHomeType] = useState('');

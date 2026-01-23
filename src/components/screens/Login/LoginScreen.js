@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors } from '../theme/colors';
-import { Spacing } from '../theme/spacing';
-import { Typography } from '../theme/typography';
-import CustomInput from '../ui/CustomInput';
-import CustomButton from '../ui/CustomButton';
+import { Colors } from '../../../theme/colors';
+import { Spacing } from '../../../theme/spacing';
+import { Typography } from '../../../theme/typography';
+import CustomInput from '../../shared/CustomInput';
+import CustomButton from '../../shared/CustomButton';
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
