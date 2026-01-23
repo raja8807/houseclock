@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Colors } from '../../theme/colors';
 import { Spacing } from '../../theme/spacing';
 import { Typography } from '../../theme/typography';
@@ -11,6 +11,7 @@ const CustomCard = ({
     statusColor,
     onPress,
     children,
+    image,
 }) => {
     return (
         <TouchableOpacity
@@ -20,7 +21,8 @@ const CustomCard = ({
             activeOpacity={0.7}
         >
             <View style={styles.contentContainer}>
-                <View style={styles.textContainer}>
+                {image && <Image source={{ uri: image }} style={styles.thumbnail} />}
+                <View style={[styles.textContainer, image && { marginLeft: Spacing.s }]}>
                     <Text style={[Typography.subtitle, styles.title]} numberOfLines={1}>{title}</Text>
                     {subtitle && (
                         <Text style={[Typography.caption, styles.subtitle]} numberOfLines={1}>
@@ -77,6 +79,12 @@ const styles = StyleSheet.create({
     rightText: {
         fontWeight: '500',
         color: Colors.textSecondary,
+    },
+    thumbnail: {
+        width: 48,
+        height: 48,
+        borderRadius: 8,
+        backgroundColor: Colors.border,
     },
 });
 

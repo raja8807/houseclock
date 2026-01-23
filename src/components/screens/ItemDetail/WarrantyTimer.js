@@ -3,10 +3,16 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Colors } from '../../../theme/colors';
 import { Spacing } from '../../../theme/spacing';
 
+import { getStatusFromDays, getStatusColorName } from '../../../utils/dateUtils';
+
 const WarrantyTimer = ({ daysLeft }) => {
+    const status = getStatusFromDays(daysLeft);
+    const colorName = getStatusColorName(status);
+    const color = Colors[colorName] || Colors.primary;
+
     return (
         <View style={styles.timerContainer}>
-            <Text style={styles.timerValue}>{daysLeft} Days</Text>
+            <Text style={[styles.timerValue, { color }]}>{daysLeft} Days</Text>
             <Text style={styles.timerLabel}>Until Warranty Expires</Text>
         </View>
     );
@@ -23,7 +29,7 @@ const styles = StyleSheet.create({
     timerValue: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: Colors.primary,
+        // color set dynamically
     },
     timerLabel: {
         color: Colors.textSecondary,

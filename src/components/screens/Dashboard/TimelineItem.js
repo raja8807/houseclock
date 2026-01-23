@@ -1,18 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import CustomCard from '../../shared/CustomCard';
 import { Colors } from '../../../theme/colors';
 import { Typography } from '../../../theme/typography';
-import { formatDate, getDaysRemaining } from '../../../utils/dateUtils';
+import { formatDate, getDaysRemaining, getStatusFromDays, getStatusColorName } from '../../../utils/dateUtils';
 
 const TimelineItem = ({ item, maintenance, onPress }) => {
     const daysLeft = getDaysRemaining(item.expiryDate);
-    const status = item.status;
-
-    // Map status string to Color
-    let statusColor = Colors.success;
-    if (status === 'urgent') statusColor = Colors.danger;
-    if (status === 'upcoming') statusColor = Colors.accent;
+    const status = getStatusFromDays(daysLeft);
+    const statusColorName = getStatusColorName(status);
+    const statusColor = Colors[statusColorName] || Colors.textSecondary;
 
     return (
         <CustomCard
@@ -21,6 +18,7 @@ const TimelineItem = ({ item, maintenance, onPress }) => {
             rightText={`${daysLeft} days`}
             statusColor={statusColor}
             onPress={onPress}
+            image={item.image} // Passing image prop
         >
             {maintenance && (
                 <View style={styles.maintenanceContainer}>

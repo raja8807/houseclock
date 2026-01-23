@@ -5,8 +5,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../../theme/colors';
 import { Spacing } from '../../theme/spacing';
 import { Typography } from '../../theme/typography';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-const CustomHeader = ({ title, showBack = false, rightElement }) => {
+const CustomHeader = ({ title, showBack = false, rightElement, ...props }) => {
     const navigation = useNavigation();
 
     return (
@@ -24,6 +25,11 @@ const CustomHeader = ({ title, showBack = false, rightElement }) => {
                 </View>
                 <View style={styles.rightContainer}>
                     {rightElement}
+                    {!rightElement && props.rightIcon && (
+                        <TouchableOpacity onPress={props.onRightPress} style={styles.rightButton}>
+                            <Ionicons name={props.rightIcon} size={24} color={Colors.primary} />
+                        </TouchableOpacity>
+                    )}
                 </View>
             </View>
         </SafeAreaView>
@@ -63,6 +69,9 @@ const styles = StyleSheet.create({
     rightContainer: {
         width: 40,
         alignItems: 'flex-end',
+    },
+    rightButton: {
+        padding: Spacing.s,
     },
 });
 
