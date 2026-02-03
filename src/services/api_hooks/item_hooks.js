@@ -1,10 +1,10 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../api';
 
-export const useFetchItems = () => {
+export const useFetchItems = (propertyId) => {
     return useQuery({
-        queryKey: ['items'],
-        queryFn: api.fetchItems,
+        queryKey: ['items', propertyId],
+        queryFn: () => api.fetchItems(propertyId),
     });
 };
 

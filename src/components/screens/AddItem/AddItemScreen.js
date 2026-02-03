@@ -8,6 +8,7 @@ import CustomButton from '../../shared/CustomButton';
 import CustomHeader from '../../shared/CustomHeader';
 import CustomDatePicker from '../../shared/CustomDatePicker';
 import { useAddItem, useEditItem } from '../../../services/api_hooks/item_hooks';
+import { useProperty } from '../../../context/PropertyContext';
 import * as ImagePicker from 'expo-image-picker';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -20,6 +21,8 @@ const AddItemScreen = ({ navigation, route }) => {
     const [purchaseDate, setPurchaseDate] = useState(item?.purchaseDate || '');
     const [warrantyDuration, setWarrantyDuration] = useState(item?.warrantyDuration?.toString() || '12');
     const [image, setImage] = useState(item?.image || null);
+
+    const { currentProperty } = useProperty();
 
     const categoryOptions = [
         { label: 'Electronics', value: 'electronics' },
@@ -107,6 +110,7 @@ const AddItemScreen = ({ navigation, route }) => {
             warrantyDuration: durationMonths,
             returnWindow: '30 Days',      // Default for MVP
             image,
+            propertyId: isEditMode ? item.propertyId : currentProperty?.id,
         };
 
         try {

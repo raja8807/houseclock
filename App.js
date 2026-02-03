@@ -12,11 +12,15 @@ const queryClient = new QueryClient({
   },
 });
 
+import { PropertyProvider } from './src/context/PropertyContext';
+
 export default function App() {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <AppNavigator />
+        <PropertyProvider>
+          <AppNavigator />
+        </PropertyProvider>
       </QueryClientProvider>
     </SafeAreaProvider>
   );

@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../api';
+import { useProperty } from '../../context/PropertyContext';
 
 // fetchMaintenance is removed as tasks are now nested in items.
 // UI components should read tasks directly from the item object.
@@ -29,6 +30,9 @@ export const useAddMaintenance = (options = {}) => {
 
 export const useDeleteMaintenance = () => {
     const queryClient = useQueryClient();
+
+
+
     return useMutation({
         mutationFn: api.deleteMaintenance,
         onSuccess: async (data, variables, context) => {
@@ -52,25 +56,25 @@ export const useDeleteMaintenance = () => {
 
 export const useEditMaintenance = () => {
     const queryClient = useQueryClient();
+    const { currentProperty } = useProperty()
+
     return useMutation({
         mutationFn: api.updateMaintenance,
         onSuccess: async (data, variables, context) => {
             // data is the updated task
-            queryClient.setQueryData(['items'], (oldItems) => {
+            queryClient.setQueryData(['items', currentProperty?.id], (oldItems) => {
                 if (!oldItems) return [];
                 return oldItems.map(item => {
                     if (item.id === data.itemId) {
                         return {
                             ...item,
-                            maintenanceTasks: item.maintenanceTasks.map(t =>
-                                t.id === data.id ? data : t
-                            )
+                            maintenanceTasks: []
                         };
                     }
                     return item;
                 });
             });
-            await queryClient.invalidateQueries({ queryKey: ['items'] });
+            await queryClient.invalidateQueries({ queryKey: ['items', currentProperty?.id] });
         },
     });
 };

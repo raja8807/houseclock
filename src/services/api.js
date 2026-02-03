@@ -1,22 +1,44 @@
 import { dummyItems } from '../data/dummyItems';
+import { dummyProperties } from '../data/dummyProperties';
 
 // In-memory data store
 let items = [...dummyItems];
+let properties = [...dummyProperties];
+let currentPropertyId = 'prop_1';
 
 const SIMULATED_DELAY = 500; // ms
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const api = {
-    // --- ITEMS ---
-    fetchItems: async () => {
+    // --- PROPERTIES ---
+    fetchProperties: async () => {
         await delay(SIMULATED_DELAY);
-        return [...items];
+        return [...properties];
+    },
+
+    addProperty: async (newProperty) => {
+        await delay(SIMULATED_DELAY);
+        const property = {
+            id: Math.random().toString(36).substr(2, 9),
+            ...newProperty,
+        };
+        properties = [...properties, property];
+        return property;
+    },
+
+
+    // --- ITEMS ---
+    fetchItems: async (propertyId) => {
+        await delay(SIMULATED_DELAY);
+        const pid = propertyId;
+        return items.filter(i => i.propertyId === pid);
     },
 
     addItem: async (newItem) => {
         await delay(SIMULATED_DELAY);
         const item = {
             id: Math.random().toString(36).substr(2, 9),
+            propertyId: currentPropertyId, // Auto-assign to current property
             status: 'safe',
             maintenanceTasks: [],
             ...newItem,

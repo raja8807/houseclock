@@ -1,12 +1,12 @@
 export const dummyItems = [
     {
         id: '1',
+        propertyId: 'prop_1',
         name: 'Central Air Conditioner',
         category: 'HVAC',
         purchaseDate: '2023-05-10',
         warrantyDuration: 60, // 5 Years
         returnWindow: null,
-        // status removed, calculated dynamically
         expiryDate: '2028-05-10',
         maintenanceTasks: [
             {
@@ -22,6 +22,7 @@ export const dummyItems = [
     },
     {
         id: '2',
+        propertyId: 'prop_1',
         name: 'Smoke & Carbon Monoxide Alarms',
         category: 'Safety',
         purchaseDate: '2022-08-20',
@@ -42,6 +43,7 @@ export const dummyItems = [
     },
     {
         id: '3',
+        propertyId: 'prop_2',
         name: 'Water Heater',
         category: 'Plumbing',
         purchaseDate: '2021-03-15',
@@ -62,6 +64,7 @@ export const dummyItems = [
     },
     {
         id: '4',
+        propertyId: 'prop_2',
         name: 'Clothes Dryer',
         category: 'Appliances',
         purchaseDate: '2024-01-05',
@@ -82,6 +85,7 @@ export const dummyItems = [
     },
     {
         id: '5',
+        propertyId: 'prop_1',
         name: 'Refrigerator',
         category: 'Appliances',
         purchaseDate: '2023-11-18',
